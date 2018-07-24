@@ -80,6 +80,12 @@ function checkProduct(number, product, order) {
 				var price = result[0].price;
 				var total = price * number;
 				console.log("Your total cost is $" + total + "!")
+				con.query(`UPDATE products SET product_sales = product_sales + ${total} WHERE item_id=${order}`, function(err, result) {
+					if(err) {
+						console.log(err)
+					}
+					console.log("Updated")
+				});
 			});
 		};
 	});
